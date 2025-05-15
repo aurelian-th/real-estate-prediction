@@ -62,12 +62,19 @@ moldova-insight-realty/
 
 ## 📊 Prediction Algorithm
 
-The platform uses a linear regression model implemented in C to predict future property prices:
+The platform uses a sophisticated linear regression model implemented in C to predict future property prices:
 
 1. **Historical Data Analysis**: Aggregates property price data by district and room count
 2. **Trend Calculation**: Identifies historical price trends over 24 months
-3. **Regression Model**: Applies linear regression to predict 6-month and 12-month prices
-4. **Confidence Calculation**: Determines prediction confidence based on data quality
+3. **Regression Model**: Applies linear regression with seasonal adjustments to predict 6-month and 12-month prices
+4. **Confidence Calculation**: Determines prediction confidence based on data quality, consistency, and sample size
+5. **District Comparison**: Compares price trends and predictions across different districts
+
+Key features of our prediction model:
+- Seasonal adjustments based on the time of year
+- Confidence level indicators to show reliability of predictions
+- Visual indicators for growth rates
+- Multi-district comparison charts
 
 ## 🚀 Getting Started
 

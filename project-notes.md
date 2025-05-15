@@ -38,10 +38,14 @@
 1. **Historical Data Analysis**
    - Aggregate historical price data by district and room count
    - Calculate monthly averages and trends
+   - Apply outlier detection to remove anomalous data points
+   - Analyze sample size and data quality metrics
 
 2. **Prediction Model**
-   - Implement simple linear regression in C
-   - Set up 6-month and 12-month forecasting
+   - ✅ Implement linear regression in C with seasonal adjustments
+   - ✅ Calculate prediction confidence based on data quality metrics
+   - ✅ Set up 6-month and 12-month forecasting
+   - Add support for dynamic model retraining with new data
 
 #### Testing
 1. **Unit Tests**

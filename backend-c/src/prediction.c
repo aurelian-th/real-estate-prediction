@@ -85,38 +85,157 @@ price_prediction_t predict_prices(int district_id, int room_count) {
 
 // Generate prediction based on linear regression
 double linear_regression_predict(price_trend_point_t* data, int count, int months_ahead) {
-    printf("[STUB] linear_regression_predict called for %d data points, %d months ahead\n", 
+    printf("[Implementation] linear_regression_predict called for %d data points, %d months ahead\n", 
            count, months_ahead);
     
     if (count < 2) {
         return 0.0; // Not enough data points
     }
     
-    // In a full implementation, this would contain actual linear regression logic
-    // For the visual MVP, we'll return a simple projection
-    double latest_price = data[count - 1].price;
-    double first_price = data[0].price;
+    // Simple linear regression implementation
+    // y = a + bx where:
+    // b = sum((x_i - x_mean)(y_i - y_mean)) / sum((x_i - x_mean)^2)
+    // a = y_mean - b * x_mean
     
-    // Calculate monthly growth rate
-    double monthly_growth_rate = pow((latest_price / first_price), 1.0 / (count - 1)) - 1.0;
+    // Calculate x_mean and y_mean
+    double x_sum = 0.0;
+    double y_sum = 0.0;
     
-    // Apply growth rate for the prediction period
-    return latest_price * pow(1.0 + monthly_growth_rate, months_ahead);
+    for (int i = 0; i < count; i++) {
+        x_sum += i;
+        y_sum += data[i].price;
+    }
+    
+    double x_mean = x_sum / count;
+    double y_mean = y_sum / count;
+    
+    // Calculate b (slope)
+    double numerator = 0.0;
+    double denominator = 0.0;
+    
+    for (int i = 0; i < count; i++) {
+        double x_diff = i - x_mean;
+        double y_diff = data[i].price - y_mean;
+        
+        numerator += x_diff * y_diff;
+        denominator += x_diff * x_diff;
+    }
+    
+    // Avoid division by zero
+    double slope = (denominator != 0.0) ? numerator / denominator : 0.0;
+    
+    // Calculate a (intercept)
+    double intercept = y_mean - slope * x_mean;
+    
+    // Predict price for months_ahead
+    double predicted_price = intercept + slope * (count - 1 + months_ahead);
+    
+    // Apply seasonal adjustment (simplified)
+    double seasonal_factor = 1.0;
+    
+    // Determine current month
+    time_t now = time(NULL);
+    struct tm* current_tm = localtime(&now);
+    int current_month = current_tm->tm_mon;
+    
+    // Predict month (current + months_ahead)
+    int target_month = (current_month + months_ahead) % 12;
+    
+    // Apply seasonal factors
+    // Q1 (winter): slightly lower prices
+    if (target_month >= 0 && target_month < 3) {
+        seasonal_factor = 0.98;
+    }
+    // Q2 (spring): higher activity, higher prices
+    else if (target_month >= 3 && target_month < 6) {
+        seasonal_factor = 1.03;
+    }
+    // Q3 (summer): stable to slight increase
+    else if (target_month >= 6 && target_month < 9) {
+        seasonal_factor = 1.01;
+    }
+    // Q4 (fall): slightly lower activity
+    else {
+        seasonal_factor = 0.99;
+    }
+    
+    // Apply seasonal adjustment
+    predicted_price *= seasonal_factor;
+    
+    // Ensure prediction is positive
+    return (predicted_price > 0) ? predicted_price : data[count-1].price;
 }
 
 // Calculate confidence level for the prediction
 double calculate_prediction_confidence(price_trend_point_t* data, int count) {
-    printf("[STUB] calculate_prediction_confidence called for %d data points\n", count);
+    printf("[Implementation] calculate_prediction_confidence called for %d data points\n", count);
     
-    // In a full implementation, this would analyze data quality and trend stability
-    // For the visual MVP, return a fixed confidence based on data count
+    // This calculates confidence based on:
+    // 1. Amount of data available (more data = higher confidence)
+    // 2. Consistency of trends (lower variance = higher confidence)
+    // 3. Sample size information (larger samples = higher confidence)
+    
+    // Base confidence based on data count
+    double data_confidence = 0.0;
     if (count < 6) {
-        return 0.6; // Limited confidence with few data points
+        data_confidence = 0.60; // Limited data points
     } else if (count < 12) {
-        return 0.75; // Medium confidence
+        data_confidence = 0.75; // Moderate amount of data
+    } else if (count < 24) {
+        data_confidence = 0.85; // Good amount of data
     } else {
-        return 0.85; // Good confidence with 12+ months of data
+        data_confidence = 0.90; // Excellent amount of data
     }
+    
+    // Calculate trend consistency (using coefficient of variation)
+    double mean_price = 0.0;
+    for (int i = 0; i < count; i++) {
+        mean_price += data[i].price;
+    }
+    mean_price /= count;
+    
+    double sum_squared_diff = 0.0;
+    for (int i = 0; i < count; i++) {
+        double diff = data[i].price - mean_price;
+        sum_squared_diff += diff * diff;
+    }
+    
+    double std_dev = sqrt(sum_squared_diff / count);
+    double coef_variation = (mean_price > 0) ? std_dev / mean_price : 1.0;
+    
+    // Convert coefficient of variation to a confidence factor
+    // Lower variation (more consistent) = higher confidence
+    double consistency_confidence = 1.0 - fmin(0.3, coef_variation);
+    
+    // Calculate sample size confidence
+    double total_samples = 0.0;
+    for (int i = 0; i < count; i++) {
+        total_samples += data[i].sample_size;
+    }
+    double avg_sample_size = total_samples / count;
+    
+    // Convert average sample size to a confidence factor
+    double sample_confidence = 0.0;
+    if (avg_sample_size < 10) {
+        sample_confidence = 0.70; // Small sample size
+    } else if (avg_sample_size < 30) {
+        sample_confidence = 0.80; // Medium sample size
+    } else if (avg_sample_size < 50) {
+        sample_confidence = 0.90; // Large sample size
+    } else {
+        sample_confidence = 0.95; // Very large sample size
+    }
+    
+    // Combine the confidence factors (weighted average)
+    double combined_confidence = 
+        (data_confidence * 0.4) + 
+        (consistency_confidence * 0.4) + 
+        (sample_confidence * 0.2);
+    
+    // Ensure confidence is within [0.5, 0.95] range
+    combined_confidence = fmax(0.5, fmin(0.95, combined_confidence));
+    
+    return combined_confidence;
 }
 
 // Handler for trend API endpoint
