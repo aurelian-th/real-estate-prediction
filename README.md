@@ -107,4 +107,4 @@ This project is a student assignment at the Technical University of Moldova. Cop
 
 - Technical University of Moldova
 - Faculty of Software Engineering
-- Structured and Algorithmic Design course
+- Data Structures and Algorithms course
