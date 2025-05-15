@@ -92,4 +92,4 @@ Let's see the platform in action!
 
 **Questions?**
 
-*Technical University of Moldova, SDA Project, May 2025*
+*Technical University of Moldova, DSA Project, May 2025*

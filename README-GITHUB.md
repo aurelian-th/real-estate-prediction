@@ -136,4 +136,4 @@ make
 
 ## 📄 License
 
-This project is part of the SDA course at the Technical University of Moldova (May 2025).
+This project is part of the DSA (Data Structures and Algorithms) course at the Technical University of Moldova (May 2025).
