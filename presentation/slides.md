@@ -1,17 +1,51 @@
 ---
-title: Moldova Insight Realty: Navigating the Future of Moldovan Real Estate
+title: "Moldova Insight Realty: Navigating the Future of Moldovan Real Estate"
 authors: L & A
+theme: default
+highlighter: shiki
+css: ./style.css
+background: https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?q=80&w=1973&auto=format&fit=crop
+class: text-center
 ---
 
 # Moldova Insight Realty
 
-#### L & A | SDA
-
-<!-- bg:![](https://images.unsplash.com/photo-chișinău-skyline) -->
+<div class="hero-section">
+  <h1>Making Real Estate Transparent in Moldova</h1>
+  <div class="flex justify-center mt-4 gap-4">
+    <button class="btn">Browse Properties</button>
+    <button class="btn btn-outline">View Market Trends</button>
+  </div>
+</div>
 
 <!--
 (L): (Energetic, welcoming) "Bună ziua! Good morning! We are L and A. Today, we're excited to share not just a project, but a vision: empowering Moldovans to navigate one of life's biggest decisions – real estate – with unprecedented clarity and confidence. Welcome to Moldova Insight Realty."
 -->
+
+---
+layout: website-style
+---
+
+# Explore Chișinău Districts
+
+<p class="opacity-70">Discover real estate opportunities across different areas of the city</p>
+
+<DistrictsGrid />
+
+---
+layout: website-style
+---
+
+# Why Moldova Insight Realty?
+
+<p class="opacity-70">Our platform provides transparent real estate data to help you make informed decisions</p>
+
+<FeaturesGrid />
+
+<div class="mt-8 p-4 bg-blue-50 rounded-lg text-center">
+  <h3 class="mb-2">Ready to explore the real estate market?</h3>
+  <button class="btn">Get Started</button>
+</div>
 
 ---
 
@@ -20,7 +54,7 @@ authors: L & A
 **65% Stress (IDIS Viitorul)**  
 Fragmented Data
 
-<!-- bg:![](https://images.unsplash.com/photo-maze) -->
+<!-- bg:![maze](https://images.unsplash.com/photo-1517946487903-5430c839d98a?q=80&w=2070&auto=format&fit=crop) -->
 
 <!--
 (L): "Buying or selling property in Moldova... it can often feel like navigating a complex maze in the dark. In fact, research, like that from IDIS Viitorul, suggests around 65% of Moldovans find this process highly stressful and opaque. Why? Fragmented information, difficulty assessing fair value, and a general lack of transparent, forward-looking insights."
@@ -32,7 +66,7 @@ Fragmented Data
 
 Hypothesis → Validation → Pivot → Core Problem
 
-<!-- bg:![](https://images.unsplash.com/photo-lightbulb-path) -->
+<!-- bg:![lightbulb](https://images.unsplash.com/photo-1535350356005-fd52b3b524fb?q=80&w=2070&auto=format&fit=crop) -->
 
 <!--
 (L): "We didn't arrive at our solution by chance. Our journey was iterative. We started with broad ideas, formulated hypotheses – like a premium tool for agents, or a basic listing aggregator. We (simulated) validated these, learned from what didn't quite hit the mark for the broader public need, and pivoted. This rigorous process led us to the specific, core problem we are here to solve: empowering everyday Moldovans."
@@ -41,10 +75,20 @@ Hypothesis → Validation → Pivot → Core Problem
 ---
 
 # Moldova Insight Realty (MVP)
+class: blue-header
 
 **Clarity. Prediction. Empowerment.**
 
-<!-- bg:![](https://images.unsplash.com/photo-dashboard-mockup) -->
+<div class="grid grid-cols-2 gap-6 mt-8">
+  <div class="website-container">
+    <h3>Real-Time Market Insights</h3>
+    <p>Access to historical and current market data with predictive analytics for future trends.</p>
+  </div>
+  <div class="website-container">
+    <h3>Property Intelligence</h3>
+    <p>Comprehensive property listings with fair price indicators and neighborhood analysis.</p>
+  </div>
+</div>
 
 <!--
 (A): "And that core problem led us to Moldova Insight Realty. We're presenting our Minimum Viable Product: a non-profit platform architected to bring clarity, predictive insights, and empowerment to the Moldovan real estate market, starting with Chișinău."
@@ -54,11 +98,25 @@ Hypothesis → Validation → Pivot → Core Problem
 
 # Who We Serve
 
-Ana (First-time Buyer)  
-Ion & Maria (Family)  
-Your Needs Met
+<div class="grid grid-cols-2 gap-4">
+<div class="website-container">
+<h3>Ana (First-time Buyer)</h3>  
+<ul>
+  <li>Clear price trends</li>
+  <li>1-2 year predictions</li>
+</ul>
+</div>
+<div class="website-container">
+<h3>Ion & Maria (Family)</h3>
+<ul>
+  <li>Neighborhood safety</li>
+  <li>School proximity</li>
+  <li>3-5 year forecasts</li>
+</ul>
+</div>
+</div>
 
-<!-- bg:![](https://images.unsplash.com/photo-user-icons) -->
+<!-- bg:![people](https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=2069&auto=format&fit=crop) -->
 
 <!--
 (A): "We're building this for real people. For 'Ana Popescu,' a young professional in Chișinău needing clear price trends for specific micro-locations and 1-2 year price predictions. For 'Ion & Maria Stratan,' a family needing neighborhood safety, school info, and 3-5 year price stability predictions. Our MVP is tailored to these critical needs, aiming to make their journey less stressful and more informed."
@@ -68,11 +126,33 @@ Your Needs Met
 
 # Core MVP Features
 
-Property Listings  
-Historical Trends (Recharts)  
-Basic Predictions  
-Neighborhood Info  
-Personalized Dashboard
+<div class="grid grid-cols-3 gap-4">
+  <div class="feature-card">
+    <div class="icon">🏠</div>
+    <h3>Property Listings</h3>
+    <p>Comprehensive catalog with filtering</p>
+  </div>
+  <div class="feature-card">
+    <div class="icon">📊</div>
+    <h3>Historical Trends</h3>
+    <p>Interactive charts with Recharts</p>
+  </div>
+  <div class="feature-card">
+    <div class="icon">🔮</div>
+    <h3>Basic Predictions</h3>
+    <p>6-12 month price forecasts</p>
+  </div>
+  <div class="feature-card">
+    <div class="icon">🏙️</div>
+    <h3>Neighborhood Info</h3>
+    <p>Safety, schools, amenities data</p>
+  </div>
+  <div class="feature-card">
+    <div class="icon">👤</div>
+    <h3>Personalized Dashboard</h3>
+    <p>Save searches and favorite properties</p>
+  </div>
+</div>
 
 <!-- bg:![](https.unsplash.com/photo-app-flow) -->
 
@@ -84,12 +164,24 @@ Personalized Dashboard
 
 # The Architectural Blueprint
 
-React Frontend  
-C Backend Core  
-PostgreSQL DB  
-RESTful API
+<div class="grid grid-cols-2 gap-10 mt-8">
+  <div>
+    <h3 class="mb-4">Frontend</h3>
+    <div class="feature-box">React</div>
+    <div class="feature-box">Vite</div>
+    <div class="feature-box">Tailwind CSS</div>
+    <div class="feature-box">Recharts</div>
+  </div>
+  <div>
+    <h3 class="mb-4">Backend</h3>
+    <div class="feature-box">C language</div>
+    <div class="feature-box">libmicrohttpd</div>
+    <div class="feature-box">libpq</div>
+    <div class="feature-box">PostgreSQL</div>
+  </div>
+</div>
 
-<!-- bg:![](https://images.unsplash.com/photo-architecture-diagram) -->
+<!-- bg:![architecture](https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2034&auto=format&fit=crop) -->
 
 <!--
 (L): "Our tech stack is designed for efficiency and scalability. The frontend is built with React, ensuring a dynamic and responsive user experience. The core backend is written in C, chosen for its performance and control over system resources. We use PostgreSQL for our database, providing robust data management capabilities. All these components communicate through a RESTful API, ensuring seamless integration and interaction."
@@ -121,12 +213,26 @@ struct Property {
 
 # DSA in Action
 
-Algorithms: Time Series (Prophet)  
-Regression  
-Spatial Indexing  
-Efficient Data Structures
+<div class="grid grid-cols-2 gap-10 mt-8">
+  <div class="website-container">
+    <h3>Prediction Algorithms</h3>
+    <ul>
+      <li>Time Series (Prophet)</li>
+      <li>Regression Models</li>
+      <li>Machine Learning Pipeline</li>
+    </ul>
+  </div>
+  <div class="website-container">
+    <h3>Data Optimization</h3>
+    <ul>
+      <li>Spatial Indexing</li>
+      <li>Efficient Data Structures</li>
+      <li>Query Optimization</li>
+    </ul>
+  </div>
+</div>
 
-<!-- bg:![](https://images.unsplash.com/photo-dsa-icons) -->
+<!-- bg:![algorithms](https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop) -->
 
 <!--
 (A): "Data Structures and Algorithms (DSA) are at the heart of our predictive capabilities. We use time series analysis with Prophet for forecasting, regression models for trend analysis, and spatial indexing for efficient geographic data handling. These advanced techniques enable us to provide accurate and actionable insights to our users."
@@ -151,12 +257,26 @@ MLOps Tools
 ---
 
 # Data: The Foundation of Insight
+class: blue-header
 
-Simulated Chișinău Data (3-5 yrs)  
-Detailed PostgreSQL Schema  
-Fueling Insights
+<div class="grid grid-cols-3 gap-6 mt-8">
+  <div class="stats-card">
+    <div class="number">3+</div>
+    <div class="label">Years of Data</div>
+  </div>
+  <div class="stats-card">
+    <div class="number">5</div>
+    <div class="label">City Districts</div>
+  </div>
+  <div class="stats-card">
+    <div class="number">1000+</div>
+    <div class="label">Property Records</div>
+  </div>
+</div>
 
-<!-- bg:![](https://images.unsplash.com/photo-data-flow) -->
+<p class="mt-8 text-center">Simulated Chișinău real estate data powers our analytics engine</p>
+
+<!-- bg:![data](https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop) -->
 
 <!--
 (L): "Data is the cornerstone of our platform. We've simulated 3-5 years of real estate data for Chișinău, creating a detailed PostgreSQL schema to store and manage this information. This rich dataset fuels our insights, enabling us to provide valuable predictions and trends to our users."
@@ -166,9 +286,12 @@ Fueling Insights
 
 # DEMO: Navigating with Insight
 
-(Key Features Showcase)
+<div class="text-center">
+  <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" alt="Dashboard" class="mx-auto max-w-lg rounded-lg shadow-lg" />
+  <p class="mt-4 text-sm opacity-70">Live demonstration of Moldova Insight Realty platform</p>
+</div>
 
-<!-- bg:![](https://images.unsplash.com/photo-demo) -->
+<!-- bg:![demo](https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop) -->
 
 <!--
 (A): "Now, let's dive into a demo of our platform. We'll showcase the key features, including property listings, historical trends, price predictions, neighborhood information, and the personalized dashboard. This will give you a firsthand look at how Moldova Insight Realty can empower users in their real estate journey."
@@ -193,10 +316,24 @@ Bilingual Support (RO/RU)
 
 # Beyond MVP: The Innovation Roadmap
 
-Phase 2: Live Data Integration (999.md Scraping)  
-Real-Time Market Pulse
+<div class="timeline mt-8">
+  <div class="website-container mb-4">
+    <h3>Phase 2: Live Data Integration</h3>
+    <p>Integrating real-time data from 999.md and other sources to provide up-to-date market insights.</p>
+  </div>
+  
+  <div class="website-container mb-4">
+    <h3>Phase 3: Advanced AI/ML</h3>
+    <p>Implementing transformer models and image-enhanced predictions for more accurate property valuations.</p>
+  </div>
+  
+  <div class="website-container">
+    <h3>Phase 4: Mobile App & API</h3>
+    <p>Expanding access through a mobile application and public API for developers.</p>
+  </div>
+</div>
 
-<!-- bg:![](https://images.unsplash.com/photo-web-scraping) -->
+<!-- bg:![innovation](https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop) -->
 
 <!--
 (L): "Our vision extends beyond the MVP. In Phase 2, we plan to integrate live data from sources like 999.md, providing real-time market insights. This will enhance our platform's value, offering users up-to-date information and a real-time pulse of the market."
@@ -305,13 +442,22 @@ Non-Profit Impact
 ---
 
 # Thank You & Call to Action
+layout: website-style
 
-Moldova Insight Realty: Building the Future, Together.  
-Thank You!  
-Mulțumim!  
-Întrebări?
+<div class="text-center mt-8">
+  <h2 class="text-2xl mb-4">Moldova Insight Realty: Building the Future, Together.</h2>
+  
+  <div class="mt-8">
+    <p class="mb-2">Thank You! | Mulțumim!</p>
+    <p class="text-xl">Întrebări?</p>
+  </div>
+  
+  <div class="mt-10">
+    <button class="btn">Get Started</button>
+  </div>
+</div>
 
-<!-- bg:![](https://images.unsplash.com/photo-team-photo) -->
+<!-- bg:![team](https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop) -->
 
 <!--
 (A): "Thank you for your attention. We invite you to join us in building the future of Moldovan real estate, together. Mulțumim! Any questions?"
