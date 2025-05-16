@@ -5,14 +5,23 @@
   --brand-blue: #3b65de;
   --brand-light-blue: #4e77f2;
   --brand-dark: #1a2a54;
+  --brand-gray: #6b7280;
   --text-gray: #4b5563;
   --light-bg: #f9fafb;
   --header-bg: #0b102a;
+  --success-green: #10b981;
+  --warning-orange: #f59e0b;
+  --error-red: #ef4444;
+  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --card-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.1);
+  --border-radius: 12px;
+  --transition-speed: 0.3s;
 }
 
 /* Slide layouts and colors */
 .slidev-layout {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
 }
 
 .slidev-layout h1 {
@@ -22,6 +31,25 @@
   margin-bottom: 0.8em;
   border-bottom: 3px solid var(--brand-blue);
   padding-bottom: 0.3em;
+  text-align: center;
+}
+
+.slidev-layout h2 {
+  color: var(--brand-dark);
+  font-weight: 600;
+  font-size: 1.8em;
+  margin-bottom: 0.6em;
+}
+
+.slidev-layout h3 {
+  color: var(--brand-dark);
+  font-weight: 600;
+  font-size: 1.4em;
+  margin-bottom: 0.5em;
+}
+
+.slidev-layout p {
+  line-height: 1.6;
 }
 
 /* Title slide and headers styling to match website */
@@ -49,6 +77,81 @@
   font-weight: 600;
   font-size: 1.2em;
   color: #fff;
+}
+
+/* Timeline and Roadmap styling */
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.timeline:before {
+  content: '';
+  position: absolute;
+  left: 0.75rem;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #e5e7eb;
+  border-radius: 2px;
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 2rem;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: -2rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid white;
+  z-index: 1;
+}
+
+.timeline-marker.completed {
+  background: var(--success-green, #10b981);
+}
+
+.timeline-marker.in-progress {
+  background: var(--brand-blue, #3b65de);
+}
+
+.marker-text {
+  position: absolute;
+  left: -6rem;
+  white-space: nowrap;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+/* Prediction methodology styling */
+.methodology-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.methodology-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.methodology-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--brand-dark);
+  margin-bottom: 1rem;
+  text-align: center;
 }
 
 /* Website-style container */

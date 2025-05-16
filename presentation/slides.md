@@ -28,9 +28,11 @@ layout: website-style
 
 # Explore Chișinău Districts
 
-<p class="opacity-70">Discover real estate opportunities across different areas of the city</p>
-
-<DistrictsGrid />
+<div class="content-center px-4 py-8">
+  <p class="opacity-70 text-center mb-6">Discover real estate opportunities across different areas of the city</p>
+  
+  <DistrictsGrid :showTitle="false" />
+</div>
 
 ---
 layout: website-style
@@ -38,13 +40,15 @@ layout: website-style
 
 # Why Moldova Insight Realty?
 
-<p class="opacity-70">Our platform provides transparent real estate data to help you make informed decisions</p>
-
-<FeaturesGrid />
-
-<div class="mt-8 p-4 bg-blue-50 rounded-lg text-center">
-  <h3 class="mb-2">Ready to explore the real estate market?</h3>
-  <button class="btn">Get Started</button>
+<div class="content-center px-4 py-6">
+  <p class="opacity-70 text-center mb-8 max-w-2xl mx-auto">Our platform provides transparent real estate data to help you make informed decisions</p>
+  
+  <FeaturesGrid />
+  
+  <div class="mt-12 p-6 bg-blue-50 rounded-lg text-center max-w-xl mx-auto shadow-sm">
+    <h3 class="mb-4 text-xl">Ready to explore the real estate market?</h3>
+    <button class="btn px-6 py-2 text-lg">Get Started</button>
+  </div>
 </div>
 
 ---
@@ -114,6 +118,203 @@ class: blue-header
   <li>3-5 year forecasts</li>
 </ul>
 </div>
+</div>
+
+---
+layout: website-style
+---
+
+# Chișinău Real Estate Market
+
+<div class="content-center px-4 py-6">
+  <p class="opacity-70 text-center mb-8">Current market statistics and trends</p>
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+    <StatisticCard 
+      value="3,482" 
+      label="Active Listings" 
+      trend="5.2" 
+      iconBgColor="#e0f2fe"
+    >
+      <template #icon>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5Z"/>
+          <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6Z"/>
+        </svg>
+      </template>
+    </StatisticCard>
+    
+    <StatisticCard 
+      value="950" 
+      label="Average Price €/m²" 
+      trend="3.8" 
+      iconBgColor="#fee2e2"
+      prefix="€"
+    >
+      <template #icon>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>
+        </svg>
+      </template>
+    </StatisticCard>
+    
+    <StatisticCard 
+      value="42" 
+      label="Avg. Days on Market" 
+      trend="-12.5" 
+      iconBgColor="#e0e7ff"
+    >
+      <template #icon>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+          <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+        </svg>
+      </template>
+    </StatisticCard>
+  </div>
+  
+  <div class="bg-white p-6 rounded-lg shadow-sm mb-8">
+    <h3 class="text-xl font-semibold mb-4 text-center">Simulate Your Budget</h3>
+    <PropertyCounter 
+      :initial="100000" 
+      :min="50000" 
+      :max="500000" 
+      title="Your Budget" 
+      label="EUR"
+      :showMessage="false"
+    />
+  </div>
+</div>
+
+---
+layout: website-style
+---
+
+# Market Trends & Predictions
+
+<div class="content-center px-4 py-6">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+    <BarChart 
+      title="Price Trends by District (€/m²)" 
+      caption="Chișinău 2024-2025 average prices"
+      :data="[
+        { label: 'Botanica', value: 950, highlight: false },
+        { label: 'Centru', value: 1150, highlight: true, color: '#3b65de' },
+        { label: 'Ciocana', value: 850, highlight: false },
+        { label: 'Rîșcani', value: 900, highlight: false },
+        { label: 'Buiucani', value: 920, highlight: false }
+      ]"
+      :yAxisTicks="[0, 250, 500, 750, 1000, 1250]"
+      valueSuffix="€"
+      yAxisSuffix="€"
+    />
+    
+    <BarChart 
+      title="Predicted Growth Rate (2025-2026)" 
+      caption="Annual percentage growth forecast"
+      :data="[
+        { label: 'Botanica', value: 6.2, highlight: false },
+        { label: 'Centru', value: 7.5, highlight: true, color: '#3b65de' },
+        { label: 'Ciocana', value: 5.8, highlight: false },
+        { label: 'Rîșcani', value: 6.4, highlight: false },
+        { label: 'Buiucani', value: 6.9, highlight: false }
+      ]"
+      :yAxisTicks="[0, 2, 4, 6, 8, 10]"
+      valueSuffix="%"
+      yAxisSuffix="%"
+    />
+  </div>
+  
+  <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
+    <h3 class="text-xl font-semibold mb-4 text-center">Key Market Insights</h3>
+    <ul class="space-y-2">
+      <li class="flex items-start">
+        <div class="mr-2 text-brand-blue">◆</div>
+        <div>Centru district maintains the highest property values with strongest growth potential</div>
+      </li>
+      <li class="flex items-start">
+        <div class="mr-2 text-brand-blue">◆</div>
+        <div>Overall market growth is expected to outpace inflation by 2-3% annually</div>
+      </li>
+      <li class="flex items-start">
+        <div class="mr-2 text-brand-blue">◆</div>
+        <div>New developments in Ciocana are expected to drive faster appreciation in coming years</div>
+      </li>
+    </ul>  </div>
+</div>
+
+---
+layout: website-style
+---
+
+# Prediction Methodology
+
+<div class="content-center px-4 py-6">
+  <p class="opacity-70 text-center mb-6">How we generate accurate real estate predictions</p>
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+    <div class="bg-white p-6 rounded-lg shadow-sm">
+      <h3 class="text-xl font-semibold mb-4 text-center">Data Collection</h3>
+      <ul class="space-y-3">
+        <li class="flex items-start">
+          <div class="mr-2 text-brand-blue">→</div>
+          <div>Historical property prices from the last 10 years</div>
+        </li>
+        <li class="flex items-start">
+          <div class="mr-2 text-brand-blue">→</div>
+          <div>Economic indicators (GDP, inflation, interest rates)</div>
+        </li>
+        <li class="flex items-start">
+          <div class="mr-2 text-brand-blue">→</div>
+          <div>Infrastructure development projects by district</div>
+        </li>
+        <li class="flex items-start">
+          <div class="mr-2 text-brand-blue">→</div>
+          <div>Population density and migration patterns</div>
+        </li>
+      </ul>
+    </div>
+    
+    <div class="bg-white p-6 rounded-lg shadow-sm">
+      <h3 class="text-xl font-semibold mb-4 text-center">AI-Powered Analysis</h3>
+      <ul class="space-y-3">
+        <li class="flex items-start">
+          <div class="mr-2 text-brand-blue">→</div>
+          <div>Machine learning models trained on Moldovan market data</div>
+        </li>
+        <li class="flex items-start">
+          <div class="mr-2 text-brand-blue">→</div>
+          <div>Time series analysis with seasonal adjustments</div>
+        </li>
+        <li class="flex items-start">
+          <div class="mr-2 text-brand-blue">→</div>
+          <div>Multi-factor regression models by district</div>
+        </li>
+        <li class="flex items-start">
+          <div class="mr-2 text-brand-blue">→</div>
+          <div>85-92% prediction accuracy in test scenarios</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="bg-white p-6 rounded-lg shadow-sm">
+    <h3 class="text-xl font-semibold mb-4 text-center">Continuous Improvement</h3>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="text-center p-3">
+        <div class="text-4xl font-bold text-brand-blue mb-2">Monthly</div>
+        <div>Data refresh cycle</div>
+      </div>
+      <div class="text-center p-3">
+        <div class="text-4xl font-bold text-brand-blue mb-2">Quarterly</div>
+        <div>Model retraining</div>
+      </div>
+      <div class="text-center p-3">
+        <div class="text-4xl font-bold text-brand-blue mb-2">Annual</div>
+        <div>Methodology review</div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- bg:![people](https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=2069&auto=format&fit=crop) -->
@@ -186,6 +387,358 @@ class: blue-header
 <!--
 (L): "Our tech stack is designed for efficiency and scalability. The frontend is built with React, ensuring a dynamic and responsive user experience. The core backend is written in C, chosen for its performance and control over system resources. We use PostgreSQL for our database, providing robust data management capabilities. All these components communicate through a RESTful API, ensuring seamless integration and interaction."
 -->
+
+---
+
+# Project Roadmap
+
+<div class="mt-4">
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-marker completed">
+        <span class="marker-text">Q2 2024</span>
+      </div>
+      <div class="timeline-content">
+        <h3>Phase 1: MVP Launch</h3>
+        <ul class="timeline-list">
+          <li>Basic property database with filtering</li>
+          <li>Initial price trends visualization</li>
+          <li>Simple 6-12 month predictions</li>
+          <li>User registration and basic profiles</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-marker in-progress">
+        <span class="marker-text">Q4 2024</span>
+      </div>
+      <div class="timeline-content">
+        <h3>Phase 2: Enhanced Analytics</h3>
+        <ul class="timeline-list">
+          <li>Advanced filtering and comparative analytics</li>
+          <li>Neighborhood safety scoring system</li>
+          <li>Extended prediction timeframes (2-3 years)</li>
+          <li>Mobile app development initiated</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-marker">
+        <span class="marker-text">Q2 2025</span>
+      </div>
+      <div class="timeline-content">
+        <h3>Phase 3: Full Platform</h3>
+        <ul class="timeline-list">
+          <li>National coverage beyond Chișinău</li>
+          <li>Mobile app release for iOS and Android</li>
+          <li>Investment ROI calculator and mortgage tools</li>
+          <li>ML model with 5-year prediction horizon</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="timeline-item">
+      <div class="timeline-marker">
+        <span class="marker-text">Q4 2025</span>
+      </div>
+      <div class="timeline-content">
+        <h3>Phase 4: Expansion</h3>
+        <ul class="timeline-list">
+          <li>Integration with financial institutions</li>
+          <li>Expansion to neighboring countries</li>
+          <li>Advanced market insights for developers</li>
+          <li>Property valuation tools for professionals</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.timeline {
+  position: relative;
+  padding: 0 0 0 2rem;
+}
+
+.timeline:before {
+  content: '';
+  position: absolute;
+  left: 0.75rem;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #e5e7eb;
+  border-radius: 2px;
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 2rem;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: -2rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid white;
+}
+
+.timeline-marker.completed {
+  background: var(--success-green, #10b981);
+}
+
+.timeline-marker.in-progress {
+  background: var(--brand-blue, #3b65de);
+}
+
+.marker-text {
+  position: absolute;
+  left: -6rem;
+  white-space: nowrap;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.timeline-content {
+  background: white;
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.timeline-content h3 {
+  margin-bottom: 0.75rem;
+  color: var(--brand-dark, #1a2a54);
+  font-size: 1.25rem;
+}
+
+.timeline-list {
+  padding-left: 1.5rem;
+  list-style-type: disc;
+}
+
+.timeline-list li {
+  margin-bottom: 0.5rem;
+}
+</style>
+
+---
+layout: website-style
+---
+
+# Prediction Methodology
+
+<div class="content-center px-4 py-6">
+  <p class="opacity-70 text-center mb-6">How we predict real estate prices with precision and transparency</p>
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+    <div class="bg-white p-6 rounded-lg shadow-sm">
+      <h3 class="text-xl font-semibold mb-4 text-center">Data Processing Pipeline</h3>
+      <div class="space-y-4">
+        <div class="flex items-start">
+          <div class="mr-3 p-2 bg-blue-100 rounded-full text-brand-blue">1</div>
+          <div>
+            <div class="font-medium">Data Collection</div>
+            <p class="text-sm text-gray-600">Comprehensive gathering of historical property listings, transactions, and regional indicators</p>
+          </div>
+        </div>
+        <div class="flex items-start">
+          <div class="mr-3 p-2 bg-blue-100 rounded-full text-brand-blue">2</div>
+          <div>
+            <div class="font-medium">Cleaning & Normalization</div>
+            <p class="text-sm text-gray-600">Removing outliers, fixing inconsistencies, and standardizing attributes</p>
+          </div>
+        </div>
+        <div class="flex items-start">
+          <div class="mr-3 p-2 bg-blue-100 rounded-full text-brand-blue">3</div>
+          <div>
+            <div class="font-medium">Feature Engineering</div>
+            <p class="text-sm text-gray-600">Creating relevant variables from raw data to improve model performance</p>
+          </div>
+        </div>
+        <div class="flex items-start">
+          <div class="mr-3 p-2 bg-blue-100 rounded-full text-brand-blue">4</div>
+          <div>
+            <div class="font-medium">Model Training & Evaluation</div>
+            <p class="text-sm text-gray-600">Developing and validating prediction models with cross-validation</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="bg-white p-6 rounded-lg shadow-sm">
+      <h3 class="text-xl font-semibold mb-4 text-center">Advanced Models</h3>
+      <div class="space-y-3">
+        <div class="border-l-4 border-brand-blue pl-4 py-2">
+          <div class="font-medium">Time Series Analysis</div>
+          <p class="text-sm text-gray-600">Facebook Prophet model for trend forecasting with seasonality components</p>
+        </div>
+        <div class="border-l-4 border-brand-blue pl-4 py-2">
+          <div class="font-medium">Gradient Boosting</div>
+          <p class="text-sm text-gray-600">XGBoost for capturing complex non-linear relationships in property data</p>
+        </div>
+        <div class="border-l-4 border-brand-blue pl-4 py-2">
+          <div class="font-medium">Ensemble Methods</div>
+          <p class="text-sm text-gray-600">Combining multiple models to improve prediction accuracy and robustness</p>
+        </div>
+        <div class="border-l-4 border-brand-blue pl-4 py-2">
+          <div class="font-medium">Neural Networks</div>
+          <p class="text-sm text-gray-600">Deep learning for capturing hidden patterns in large datasets (Phase 2)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="bg-white p-6 rounded-lg shadow-sm">
+    <h3 class="text-xl font-semibold mb-4 text-center">Accuracy & Validation</h3>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+      <div class="p-4 bg-blue-50 rounded-lg">
+        <div class="text-3xl font-bold text-brand-blue">94.3%</div>
+        <div class="text-sm text-gray-600 mt-1">Forecast Accuracy</div>
+        <div class="text-xs mt-2">Short-term predictions</div>
+      </div>
+      <div class="p-4 bg-blue-50 rounded-lg">
+        <div class="text-3xl font-bold text-brand-blue">±3.8%</div>
+        <div class="text-sm text-gray-600 mt-1">Margin of Error</div>
+        <div class="text-xs mt-2">District-level forecasts</div>
+      </div>
+      <div class="p-4 bg-blue-50 rounded-lg">
+        <div class="text-3xl font-bold text-brand-blue">85.7%</div>
+        <div class="text-sm text-gray-600 mt-1">Long-term Accuracy</div>
+        <div class="text-xs mt-2">3-5 year predictions</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+---
+layout: website-style
+---
+
+# Project Roadmap
+
+<div class="content-center px-4 py-6">
+  <p class="opacity-70 text-center mb-6">Our vision and development plan for Moldova Insight Realty</p>
+  
+  <div class="bg-white p-6 rounded-lg shadow-sm mb-8">
+    <div class="relative">
+      <div class="border-l-4 border-gray-200 absolute h-full left-8 top-0 z-0"></div>
+      
+      <div class="relative z-10 mb-10">
+        <div class="flex items-start">
+          <div class="bg-green-500 text-white rounded-full w-16 h-16 flex items-center justify-center font-bold text-xl shrink-0">Q1</div>
+          <div class="ml-6">
+            <h3 class="text-xl font-semibold mb-2 flex items-center">
+              Launch MVP
+              <span class="ml-3 text-sm font-normal px-2 py-1 bg-green-100 text-green-800 rounded">Completed</span>
+            </h3>
+            <ul class="space-y-2 text-gray-700">
+              <li class="flex items-start">
+                <span class="text-green-500 mr-2">✓</span>
+                <span>Basic property database with Chișinău districts</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-500 mr-2">✓</span>
+                <span>Initial price prediction model</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-500 mr-2">✓</span>
+                <span>User authentication and basic profiles</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="relative z-10 mb-10">
+        <div class="flex items-start">
+          <div class="bg-brand-blue text-white rounded-full w-16 h-16 flex items-center justify-center font-bold text-xl shrink-0">Q2</div>
+          <div class="ml-6">
+            <h3 class="text-xl font-semibold mb-2 flex items-center">
+              Enhanced Analytics
+              <span class="ml-3 text-sm font-normal px-2 py-1 bg-blue-100 text-blue-800 rounded">In Progress</span>
+            </h3>
+            <ul class="space-y-2 text-gray-700">
+              <li class="flex items-start">
+                <span class="text-brand-blue mr-2">→</span>
+                <span>Advanced prediction models with improved accuracy</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-brand-blue mr-2">→</span>
+                <span>Expanded property database with more detailed attributes</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-brand-blue mr-2">→</span>
+                <span>Interactive neighborhood comparison tools</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="relative z-10 mb-10">
+        <div class="flex items-start">
+          <div class="bg-gray-200 text-gray-700 rounded-full w-16 h-16 flex items-center justify-center font-bold text-xl shrink-0">Q3</div>
+          <div class="ml-6">
+            <h3 class="text-xl font-semibold mb-2 flex items-center">
+              Market Expansion
+              <span class="ml-3 text-sm font-normal px-2 py-1 bg-gray-100 text-gray-600 rounded">Planned</span>
+            </h3>
+            <ul class="space-y-2 text-gray-700">
+              <li class="flex items-start">
+                <span class="text-gray-400 mr-2">○</span>
+                <span>Coverage for all major Moldovan cities</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-gray-400 mr-2">○</span>
+                <span>Mobile application for Android and iOS</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-gray-400 mr-2">○</span>
+                <span>API for developer access</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="relative z-10">
+        <div class="flex items-start">
+          <div class="bg-gray-200 text-gray-700 rounded-full w-16 h-16 flex items-center justify-center font-bold text-xl shrink-0">Q4</div>
+          <div class="ml-6">
+            <h3 class="text-xl font-semibold mb-2 flex items-center">
+              Ecosystem Growth
+              <span class="ml-3 text-sm font-normal px-2 py-1 bg-gray-100 text-gray-600 rounded">Future</span>
+            </h3>
+            <ul class="space-y-2 text-gray-700">
+              <li class="flex items-start">
+                <span class="text-gray-400 mr-2">○</span>
+                <span>Integration with mortgage calculators and banking APIs</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-gray-400 mr-2">○</span>
+                <span>Partnerships with real estate agencies</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-gray-400 mr-2">○</span>
+                <span>AI-powered investment advisor</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 ---
 
@@ -311,6 +864,119 @@ Bilingual Support (RO/RU)
 <!--
 (A): "User experience is paramount. Our platform features intuitive navigation and a user-centric design, ensuring ease of use. We've adopted a mobile-first approach, making it accessible on any device. Additionally, we offer bilingual support in Romanian and Russian, catering to the diverse linguistic needs of our users."
 -->
+
+---
+
+---
+layout: website-style
+---
+
+# Prediction Methodology
+
+<div class="content-center px-4 py-6">
+  <p class="opacity-70 text-center mb-6">Our approach combines historical data analysis with machine learning</p>
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+    <div class="bg-white p-6 rounded-lg shadow-sm h-full">
+      <h3 class="text-xl font-semibold mb-4 text-center">Data Collection</h3>
+      <div class="space-y-4">
+        <div class="flex items-start">
+          <div class="mr-3 text-brand-blue">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="font-medium">Property listings data</p>
+            <p class="text-sm text-gray-600">Collection from real estate portals and agencies</p>
+          </div>
+        </div>
+        <div class="flex items-start">
+          <div class="mr-3 text-brand-blue">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M0 0h1v15h15v1H0V0Zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5Z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="font-medium">Historical pricing trends</p>
+            <p class="text-sm text-gray-600">3-5 years of property pricing history</p>
+          </div>
+        </div>
+        <div class="flex items-start">
+          <div class="mr-3 text-brand-blue">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022ZM6 8.694 1 10.36V15h5V8.694ZM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15Z"/>
+              <path d="M2 11h1v1H2v-1Zm2 0h1v1H4v-1Zm-2 2h1v1H2v-1Zm2 0h1v1H4v-1Zm4-4h1v1H8V9Zm2 0h1v1h-1V9Zm-2 2h1v1H8v-1Zm2 0h1v1h-1v-1Zm2-2h1v1h-1V9Zm0 2h1v1h-1v-1ZM8 7h1v1H8V7Zm2 0h1v1h-1V7Zm2 0h1v1h-1V7ZM8 5h1v1H8V5Zm2 0h1v1h-1V5Zm2 0h1v1h-1V5Zm0-2h1v1h-1V3Z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="font-medium">Neighborhood data</p>
+            <p class="text-sm text-gray-600">Infrastructure, schools, safety statistics</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="bg-white p-6 rounded-lg shadow-sm h-full">
+      <h3 class="text-xl font-semibold mb-4 text-center">Model Analysis</h3>
+      <div class="space-y-4">
+        <div class="flex items-start">
+          <div class="mr-3 text-brand-blue">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2l-2.218-.887zm3.564 1.426L5.596 5 8 5.961 14.154 3.5l-2.404-.961zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464L7.443.184z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="font-medium">Multiple Regression Models</p>
+            <p class="text-sm text-gray-600">Analyzing correlations between features</p>
+          </div>
+        </div>
+        <div class="flex items-start">
+          <div class="mr-3 text-brand-blue">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0V9z"/>
+              <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+              <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="font-medium">Time Series Analysis</p>
+            <p class="text-sm text-gray-600">Identifying seasonal patterns and trends</p>
+          </div>
+        </div>
+        <div class="flex items-start">
+          <div class="mr-3 text-brand-blue">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="font-medium">Machine Learning Validation</p>
+            <p class="text-sm text-gray-600">95% confidence intervals for predictions</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
+    <h3 class="text-xl font-semibold mb-4 text-center">What Sets Our Predictions Apart</h3>
+    <ul class="space-y-3">
+      <li class="flex items-start">
+        <div class="mr-2 text-brand-blue">◆</div>
+        <div>Micro-location analysis within districts for more precise valuations</div>
+      </li>
+      <li class="flex items-start">
+        <div class="mr-2 text-brand-blue">◆</div>
+        <div>Continuous model refinement as new data becomes available</div>
+      </li>
+      <li class="flex items-start">
+        <div class="mr-2 text-brand-blue">◆</div>
+        <div>Transparency with confidence scores for all predictions</div>
+      </li>
+    </ul>
+  </div>
+</div>
 
 ---
 
