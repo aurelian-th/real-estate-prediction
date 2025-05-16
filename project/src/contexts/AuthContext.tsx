@@ -1,4 +1,6 @@
 import React, { createContext, useState, useContext, useEffect, ReactNode } from 'react';
+// Import API service
+import { api } from '../services/api';
 
 // Define types
 interface User {
@@ -14,10 +16,8 @@ interface AuthContextType {
   error: string | null;
   login: (email: string, password: string) => Promise<any>;
   logout: () => void;
+  loginWithDemo: () => Promise<any>; // New demo login function
 }
-
-// Import API service
-import { api } from '../services/api';
 
 // Create the auth context
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -38,11 +38,21 @@ export const AuthProvider: React.FC<{children: ReactNode}> = ({ children }) => {
         const userData = localStorage.getItem('user_data');
         
         if (token && userData) {
-          setUser(JSON.parse(userData));
-          setIsAuthenticated(true);
+          // Verify token expiration (simplified for MVP)
+          try {
+            const parsedUserData = JSON.parse(userData);
+            setUser(parsedUserData);
+            setIsAuthenticated(true);
+          } catch (parseError) {
+            // Invalid stored user data, clear it
+            console.error('Error parsing stored user data:', parseError);
+            logout();
+          }
         }
       } catch (err) {
         console.error('Error checking authentication:', err);
+        // Clean up potentially corrupted auth state
+        logout();
       } finally {
         setIsLoading(false);
       }
@@ -50,13 +60,23 @@ export const AuthProvider: React.FC<{children: ReactNode}> = ({ children }) => {
 
     checkAuth();
   }, []);
+
   // Login function
   const login = async (email: string, password: string) => {
     setError(null);
     setIsLoading(true);
     
     try {
+      // Validate inputs
+      if (!email || !password) {
+        throw new Error('Email and password are required');
+      }
+
       const response = await api.loginUser(email, password);
+      
+      if (!response || !response.token || !response.user) {
+        throw new Error('Invalid response from server');
+      }
       
       // Save auth data to localStorage
       localStorage.setItem('auth_token', response.token);
@@ -66,19 +86,39 @@ export const AuthProvider: React.FC<{children: ReactNode}> = ({ children }) => {
       setIsAuthenticated(true);
       return response;
     } catch (err: any) {
-      setError(err.message || 'Login failed');
-      throw err;
+      const errorMessage = err.message || 'Login failed. Please try again.';
+      setError(errorMessage);
+      throw new Error(errorMessage);
     } finally {
       setIsLoading(false);
     }
   };
 
+  // Demo login function for quick testing
+  const loginWithDemo = async () => {
+    setError(null);
+    setIsLoading(true);
+    
+    try {
+      // Use predefined demo credentials
+      const demoEmail = 'demo@example.com';
+      const demoPassword = 'password123';
+      
+      return await login(demoEmail, demoPassword);
+    } catch (err: any) {
+      setError('Demo login failed. Please try again.');
+      throw err;
+    }
+  };
+
   // Logout function
   const logout = () => {
+    // Clear all auth data
     localStorage.removeItem('auth_token');
     localStorage.removeItem('user_data');
     setUser(null);
     setIsAuthenticated(false);
+    setError(null);
   };
 
   // Value object to be provided to consumers
@@ -88,7 +128,8 @@ export const AuthProvider: React.FC<{children: ReactNode}> = ({ children }) => {
     isLoading,
     error,
     login,
-    logout
+    logout,
+    loginWithDemo
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

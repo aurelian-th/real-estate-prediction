@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { Building2, Mail, Lock } from 'lucide-react';
+import { Building2, Mail, Lock, UserCheck } from 'lucide-react';
+import { LoadingSpinner } from '../components/ui/LoadingSpinner';
 
 export const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { login } = useAuth();
+  const [isDemoLoading, setIsDemoLoading] = useState(false);
+  const { login, loginWithDemo } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -23,6 +25,20 @@ export const LoginPage = () => {
       setError(err.message || 'Login failed. Please check your credentials.');
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const handleDemoLogin = async () => {
+    setError('');
+    setIsDemoLoading(true);
+
+    try {
+      await loginWithDemo();
+      navigate('/dashboard');
+    } catch (err: any) {
+      setError('Demo login failed. Please try again.');
+    } finally {
+      setIsDemoLoading(false);
     }
   };
 
@@ -89,19 +105,43 @@ export const LoginPage = () => {
             </div>
           </div>
 
-          <div>
+          <div className="flex flex-col gap-3">
             <button
               type="submit"
               disabled={isSubmitting}
               className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-75"
             >
-              {isSubmitting ? 'Signing in...' : 'Sign in'}
+              {isSubmitting ? (
+                <span className="flex items-center">
+                  <LoadingSpinner size="small" color="white" className="mr-2" />
+                  Signing in...
+                </span>
+              ) : 'Sign in'}
+            </button>
+
+            <button
+              type="button"
+              onClick={handleDemoLogin}
+              disabled={isDemoLoading}
+              className="group relative w-full flex justify-center py-3 px-4 border border-blue-300 text-sm font-medium rounded-md text-blue-700 bg-white hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-75"
+            >
+              {isDemoLoading ? (
+                <span className="flex items-center">
+                  <LoadingSpinner size="small" color="primary" className="mr-2" />
+                  Loading demo...
+                </span>
+              ) : (
+                <span className="flex items-center">
+                  <UserCheck className="h-4 w-4 mr-2" />
+                  Login with Demo Account
+                </span>
+              )}
             </button>
           </div>
           
-          <div className="text-center text-sm mt-4">
+          <div className="text-center text-sm mt-2">
             <p className="text-gray-600">
-              For demo purposes, any email/password will work
+              Demo credentials: <strong>demo@example.com / password123</strong>
             </p>
           </div>
         </form>

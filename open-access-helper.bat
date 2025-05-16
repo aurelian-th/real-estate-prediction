@@ -1,0 +1,3 @@
+@echo off
+echo Opening Moldova Insight Realty Application Helper...
+start "" "%~dp0access-application.html"

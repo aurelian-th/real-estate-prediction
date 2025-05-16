@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
@@ -9,6 +8,7 @@ import { PropertyComparison } from './pages/PropertyComparison';
 import { Dashboard } from './pages/Dashboard';
 import { LoginPage } from './pages/LoginPage';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { LoadingSpinner } from './components/ui/LoadingSpinner';
 import './styles/global.css';
 
 // Protected route component
@@ -16,7 +16,12 @@ const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
   const { isAuthenticated, isLoading } = useAuth();
 
   if (isLoading) {
-    return <div className="flex justify-center items-center h-screen">Loading...</div>;
+    return (
+      <div className="flex flex-col justify-center items-center h-screen bg-gray-50">
+        <LoadingSpinner size="large" />
+        <p className="mt-4 text-gray-600">Loading your dashboard...</p>
+      </div>
+    );
   }
 
   if (!isAuthenticated) {

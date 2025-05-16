@@ -9,6 +9,14 @@ export default defineConfig({
     exclude: ['lucide-react'],
   },
   server: {
+    host: '0.0.0.0', // Listen on all network interfaces
+    port: 5173,
+    strictPort: false, // Try another port if 5173 is in use
+    open: true, // Automatically open the browser
+    cors: true, // Enable CORS
+    hmr: {
+      overlay: true, // Show errors as an overlay
+    },
     proxy: {
       // Proxy API requests to the backend server
       '/api': {

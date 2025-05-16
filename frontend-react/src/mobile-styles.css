@@ -1,0 +1,117 @@
+/* Moldova Insight Realty Mobile Styles */
+
+@media (max-width: 768px) {
+    /* Layout adjustments */
+    .container {
+        padding-left: var(--spacing-4);
+        padding-right: var(--spacing-4);
+    }
+    /* Typography */
+    h1 {
+        font-size: 1.875rem;
+        /* 30px */
+    }
+    h2 {
+        font-size: 1.5rem;
+        /* 24px */
+    }
+    /* Card adjustments */
+    .card,
+    .property-card {
+        margin-bottom: var(--spacing-6);
+    }
+    .card-body {
+        padding: var(--spacing-4);
+    }
+    /* Form adjustments */
+    .form-control,
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="password"],
+    input[type="date"],
+    select,
+    textarea {
+        font-size: 16px;
+        /* Prevents iOS zoom */
+    }
+    /* Stats cards adjustments */
+    .investment-stats-card {
+        padding: var(--spacing-4);
+    }
+    /* Navigation */
+    .mobile-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(255, 255, 255, 0.98);
+        transform: translateX(-100%);
+        transition: transform var(--transition-normal) var(--transition-ease);
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        padding: var(--spacing-8);
+    }
+    .mobile-menu.open {
+        transform: translateX(0);
+    }
+    /* Improved touch targets */
+    .btn,
+    button {
+        min-height: 44px;
+    }
+    a {
+        padding: var(--spacing-2) 0;
+    }
+}
+
+
+/* Print styles for investment reports */
+
+@media print {
+    body {
+        font-size: 12pt;
+        color: #000;
+        background-color: #fff;
+    }
+    .site-header,
+    .site-footer,
+    .no-print {
+        display: none !important;
+    }
+    .card,
+    .property-card {
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
+    }
+    /* Save ink */
+    .bg-primary,
+    .bg-secondary,
+    .bg-gray-800 {
+        background-color: #fff !important;
+        color: #000 !important;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        page-break-after: avoid;
+        page-break-inside: avoid;
+    }
+    img,
+    svg {
+        max-width: 100% !important;
+        page-break-inside: avoid;
+    }
+    /* Investment reports specific */
+    .investment-analysis-print-section {
+        page-break-inside: avoid;
+    }
+    .mortgage-calculator-section {
+        page-break-after: always;
+    }
+}
